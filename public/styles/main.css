@@ -1,0 +1,140 @@
+/* styles.css */
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 90%;
+  max-width: 800px;
+  margin: 30px auto;
+  background-color: #fff;
+  padding: 25px 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.response-area {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 25px;
+  min-height: 50px;
+}
+
+.response-area p {
+  margin: 0;
+  font-size: 18px;
+  color: #555;
+}
+
+.form-section {
+  margin-bottom: 20px;
+}
+
+.form-section label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #444;
+}
+
+.radio-group,
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.radio-group label,
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  font-weight: normal;
+}
+
+.radio-group input,
+.checkbox-group input {
+  margin-right: 8px;
+}
+
+.form-section input[type="text"],
+.form-section input[type="number"] {
+  width: calc(100% - 20px);
+  padding: 8px 10px;
+  font-size: 16px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.id-range {
+  display: flex;
+  gap: 15px;
+}
+
+.id-range label {
+  flex: 1;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.btn.reset {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.btn.submit {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 600px) {
+  .radio-group,
+  .checkbox-group {
+    flex-direction: column;
+  }
+
+  .id-range {
+    flex-direction: column;
+  }
+
+  .form-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+input[type="checkbox"][disabled] + label {
+  color: #aaa; /* Greyed out label text */
+}
+
+input[type="checkbox"][disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

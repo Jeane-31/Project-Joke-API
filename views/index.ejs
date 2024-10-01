@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Joke Generator</title>
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="/styles/main.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+</head>
+<body>
+    <div class="container">
+        <h1>Random Joke Generator</h1>
+        <div class="response-area">
+            <p><%= content %></p>
+        </div>
+        <form id="myForm" method="post">
+            <!-- Category Selection -->
+            <div class="form-section">
+                <label>Select Category/Categories:</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="selectCategory" value="Any" checked />
+                        Any
+                    </label>
+                    <label>
+                        <input type="radio" name="selectCategory" value="Custom" />
+                        Custom
+                    </label>
+                </div>
+                <!-- Custom Categories -->
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" name="categories" value="Programming" />
+                        Programming
+                    </label>
+                    <label>
+                        <input type="checkbox" name="categories" value="Misc" />
+                        Misc
+                    </label>
+                    <label>
+                        <input type="checkbox" name="categories" value="Dark" />
+                        Dark
+                    </label>
+                    <label>
+                        <input type="checkbox" name="categories" value="Pun" />
+                        Pun
+                    </label>
+                    <label>
+                        <input type="checkbox" name="categories" value="Spooky" />
+                        Spooky
+                    </label>
+                    <label>
+                        <input type="checkbox" name="categories" value="Christmas" />
+                        Christmas
+                    </label>
+                </div>
+            </div>
+
+            <!-- Blacklist Flags -->
+            <div class="form-section">
+                <label>Select Flags to Blacklist:</label>
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" name="blacklistFlags" value="nsfw" />
+                        NSFW
+                    </label>
+                    <label>
+                        <input type="checkbox" name="blacklistFlags" value="religious" />
+                        Religious
+                    </label>
+                    <label>
+                        <input type="checkbox" name="blacklistFlags" value="political" />
+                        Political
+                    </label>
+                    <label>
+                        <input type="checkbox" name="blacklistFlags" value="racist" />
+                        Racist
+                    </label>
+                    <label>
+                        <input type="checkbox" name="blacklistFlags" value="sexist" />
+                        Sexist
+                    </label>
+                    <label>
+                        <input type="checkbox" name="blacklistFlags" value="explicit" />
+                        Explicit
+                    </label>
+                </div>
+            </div>
+
+            <!-- Response Format -->
+            <div class="form-section">
+                <label>Select Response Format:</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="responseFormat" value="json" checked />
+                        JSON (Default)
+                    </label>
+                    <label>
+                        <input type="radio" name="responseFormat" value="xml" />
+                        XML
+                    </label>
+                    <label>
+                        <input type="radio" name="responseFormat" value="yaml" />
+                        YAML
+                    </label>
+                    <label>
+                        <input type="radio" name="responseFormat" value="txt" />
+                        Plain Text
+                    </label>
+                </div>
+            </div>
+
+            <!-- Joke Type -->
+            <div class="form-section">
+                <label>Select Joke Type:</label>
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" name="jokeType" value="single" checked />
+                        Single
+                    </label>
+                    <label>
+                        <input type="checkbox" name="jokeType" value="twopart" checked />
+                        Two Part
+                    </label>
+                </div>
+            </div>
+
+            <!-- Search String -->
+            <div class="form-section">
+                <label>Search for a joke that contains this search string:</label>
+                <input type="text" name="contains" placeholder="(Optional)" />
+            </div>
+
+            <!-- ID Range -->
+            <div class="form-section">
+                <label>Search for a joke in this ID Range:</label>
+                <div class="id-range">
+                    <label>
+                        From:
+                        <input type="number" name="idRangeFrom" value="0" min="0" max="1367" />
+                    </label>
+                    <label>
+                        To:
+                        <input type="number" name="idRangeTo" value="1367" min="0" max="1367" />
+                    </label>
+                </div>
+            </div>
+
+            <!-- Amount of Jokes -->
+            <div class="form-section">
+                <label>Amount of Jokes:</label>
+                <input type="number" name="amount" value="1" min="1" max="10" />
+            </div>
+
+            <!-- Form Buttons -->
+            <div class="form-buttons">
+                <button type="reset" class="btn reset">Reset</button>
+                <button type="submit" class="btn submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <script>
+      // Get references to the radio buttons and category checkboxes
+      const anyRadio = document.querySelector('input[name="selectCategory"][value="Any"]');
+      const customRadio = document.querySelector('input[name="selectCategory"][value="Custom"]');
+      const categoryCheckboxes = document.querySelectorAll('input[name="categories"]');
+
+      // Function to update the disabled state of category checkboxes
+      function updateCategoryCheckboxes() {
+          if (customRadio.checked) {
+              categoryCheckboxes.forEach((checkbox) => {
+                  checkbox.disabled = false;
+              });
+          } else {
+              categoryCheckboxes.forEach((checkbox) => {
+                  checkbox.disabled = true;
+                  checkbox.checked = false; // Uncheck if disabled
+              });
+          }
+      }
+
+      // Event listeners for radio buttons
+      anyRadio.addEventListener('change', updateCategoryCheckboxes);
+      customRadio.addEventListener('change', updateCategoryCheckboxes);
+
+      // Initialize the state on page load
+      updateCategoryCheckboxes();
+  </script>
+</body>
+</html>
